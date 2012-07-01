@@ -17,40 +17,35 @@ class FileManager(models.Manager):
             feed = feedparser.parse(podcast.rss)
             for item in feed['items']:
                 filename = os.path.join(settings.MP3_STORAGE, item.title)
-                self._download(item.link, filename)
+                if not Mp3File.objects.filter(pub_date=item['date'], podcast=podcast):
+                    self._download(item.link, filename)
+                    file = Mp3File()
+                    file.file_name = item.title
+                    file.podcast = podcast
+                    file.pub_date = item['date']
+                    file.save()
 
-        pass
+        return true
 
     def _download(self, url, filename):
-        u = urllib2.urlopen(remote)
+        u = urllib2.urlopen(url)
         h = u.info()
-        totalSize = int(h["Content-Length"])
+        fp = open(filename, 'wb')
 
-        print "Downloading %s bytes..." % totalSize,
-        fp = open(local, 'wb')
-
-        blockSize = 8192 #100000 # urllib.urlretrieve uses 8192
+        block_size = 8192
         count = 0
+
         while True:
-            chunk = u.read(blockSize)
+            chunk = u.read(block_size)
             if not chunk: break
             fp.write(chunk)
-            count += 1
-            if totalSize > 0:
-                percent = int(count * blockSize * 100 / totalSize)
-                if percent > 100: percent = 100
-                print "%2d%%" % percent,
-                if percent < 100:
-                    print "\b\b\b\b\b", # Erase "NN% "
-                else:
-                    print "Done."
 
         fp.flush()
         fp.close()
 
 
-
-class File(models.Model):
+class Mp3File(models.Model):
     file_name = models.CharField(max_length=255)
     podcast = models.ForeignKey(Podcasts)
+    pub_date = models.DateField()
     objects = FileManager()

@@ -1,0 +1,1 @@
+0 23 * * * curl -i -H "Accept: application/json" http://localhost:80000/api/download_files/
