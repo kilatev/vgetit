@@ -1,4 +1,3 @@
-import unitests
 from tastypie.test import ResourceTestCase
 
 
