@@ -1,4 +1,6 @@
 from tastypie.resources import ModelResource
+from tastypie.authorization import Authorization
+
 from models import Podcasts
 
 class PodcastsResource(ModelResource):
