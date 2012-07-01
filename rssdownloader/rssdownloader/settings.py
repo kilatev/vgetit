@@ -124,6 +124,7 @@ INSTALLED_APPS = (
     # 'django.contrib.admindocs',
     'rssdownloader',
     'tastypie',
+    'south',
 )
 
 # A sample logging configuration. The only tangible logging
