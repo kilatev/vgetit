@@ -1,4 +1,4 @@
 django
-django-tastypie
+django-piston
 south
 feedparser
