@@ -1,7 +1,7 @@
 from tastypie.resources import ModelResource
 from tastypie.authorization import Authorization
 
-from models import Podcasts, File
+from models import Podcasts, Mp3File
 
 class PodcastsResource(ModelResource):
     class Meta:
@@ -12,5 +12,5 @@ class PodcastsResource(ModelResource):
 
 class FileResource(ModelResource):
     class Meta:
-        queryset = File.objects.download()
+        queryset = Mp3File.objects.download()
         resource_name = 'download_files'
