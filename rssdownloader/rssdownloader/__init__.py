@@ -1,1 +1,1 @@
-from tests.py import *
+from tests import *

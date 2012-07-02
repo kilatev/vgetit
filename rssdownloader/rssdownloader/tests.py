@@ -1,12 +1,12 @@
-from tastypie.test import ResourceTestCase
+from django.utils import unittest
+from django.test.client import Client
 
 
-class DownloadFeedItemTest(ResourceTestCase):
+class TestDownloadFeedItem(unittest.TestCase):
 
     def setUp(self):
-        super(EntryResourceTest, self).setUp()
+        super(TestDownloadFeedItem, self).setUp()
 
-        # Create a user.
         self.username = 'test_user'
         self.password = 'pass'
         self.user = User.objects.create_user(self.username, 'test_user@example.com', self.password)
