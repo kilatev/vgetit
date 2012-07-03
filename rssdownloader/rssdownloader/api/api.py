@@ -25,10 +25,13 @@ class PodcastsHandler(BaseHandler):
         return rc.DELETED
 
     def update(self, request, name):
-        data = request.data
+        print "aaa"
+        data = request.GET
+        print data
         podcast = Podcasts.objects.get(name=name)
         podcast.rss = data['rss']
         podcast.save()
+        return rc.ALL_OK
 
 
 class PodcastsListHandler(BaseHandler):
@@ -39,7 +42,9 @@ class PodcastsListHandler(BaseHandler):
 
 
 class PodcastsCreateHandler(BaseHandler):
+    model = Podcasts 
     alowed_methods = ('POST',)
+    
     def create(self, request):
         data = request.GET
         podcast = Podcasts.objects.create(rss=data['rss'], name=data['name'])
