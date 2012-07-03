@@ -8,11 +8,11 @@ from django.conf import settings
 
 class Podcasts(models.Model):
     rss = models.TextField()
-    name = models.CharField(max_length=25)
+    name = models.CharField(max_length=25, unique=True, null=False, primary_key=True)
 
 
 class FileManager(models.Manager):
-    
+
     def download(self):
         podcasts = Podcasts.objects.all()
         file_list = []
@@ -28,7 +28,7 @@ class FileManager(models.Manager):
                     self._download(mp3url, filename)
                     mfile = Mp3File.objects.create(file_name=filename, podcast=podcast, pub_date=item['published'])
                     file_list.append(name)
-                    
+
         return file_list
 
     def _download(self, url, filename):
