@@ -10,7 +10,7 @@ from rssdownloader.utils import DjangoAuthentication
 auth = DjangoAuthentication()
 ad = { 'authentication': auth }
 
-mp3file_handler = Resource(Mp3FileHandler, **ad)
+mp3file_handler = Resource(Mp3FileHandler)
 podcasts_handler = Resource(PodcastsHandler, **ad)
 podcasts_list_handler = Resource(PodcastsListHandler, **ad)
 podcasts_create_handler = Resource(PodcastsCreateHandler, **ad)
