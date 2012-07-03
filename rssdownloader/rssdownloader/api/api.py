@@ -25,9 +25,7 @@ class PodcastsHandler(BaseHandler):
         return rc.DELETED
 
     def update(self, request, name):
-        print "aaa"
         data = request.GET
-        print data
         podcast = Podcasts.objects.get(name=name)
         podcast.rss = data['rss']
         podcast.save()
