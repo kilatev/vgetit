@@ -118,10 +118,11 @@ ROOT_URLCONF = 'rssdownloader.urls'
 # Python dotted path to the WSGI application used by Django's runserver.
 WSGI_APPLICATION = 'rssdownloader.wsgi.application'
 
+import os.path
+PROJECT_DIR = os.path.dirname(__file__)
+
 TEMPLATE_DIRS = (
-    # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
-    # Always use forward slashes, even on Windows.
-    # Don't forget to use absolute paths, not relative paths.
+    os.path.join(PROJECT_DIR, "templates"),
 )
 
 INSTALLED_APPS = (

@@ -4,9 +4,10 @@ from piston.resource import Resource
 from piston.authentication import HttpBasicAuthentication
 
 from rssdownloader.api import Mp3FileHandler, PodcastsHandler, PodcastsListHandler, PodcastsCreateHandler
+from rssdownloader.utils import DjangoAuthentication
 
 
-auth = HttpBasicAuthentication(realm="rssdownloader")
+auth = DjangoAuthentication()
 ad = { 'authentication': auth }
 
 mp3file_handler = Resource(Mp3FileHandler, **ad)

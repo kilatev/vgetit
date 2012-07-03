@@ -11,28 +11,32 @@ class TestDownloadFeedItem(BaseAuthenticatedClient):
     def testDownloadItem(self):
         url = reverse('downloader')
         self.assertTrue(self.client.get(url))
-    
-    
-class TestPodcastsRest(BaseAuthenticatedClient): 
- 
+
+
+class TestPodcastsRest(BaseAuthenticatedClient):
+
     def testCreatePodcast(self):
         url = reverse('podcasts_create')
-        data= dict(name='test', rss='rssurl')
+        data = dict(name='test', rss='rssurl')
         self.assertTrue(self.client.put(url, **data))
-        
+
     def testListPodcast(self):
         url = reverse('podcasts_create')
         data = {}
-        data['name']='test0'
-        data['rss']='rssurl0'
-        
-        resp = self.client.put(url, data, **self.extra)
-        data['name']='test2'
-        data['rss']='rssurl2'
-        self.client.put(url, data, **self.extra)
-         
+        data['name'] = 'test0'
+        data['rss'] = 'rssurl0'
+
+        resp = self.client.put(url, **data)
+        print "------------"
+        print resp
+        data['name'] = 'test2'
+        data['rss'] = 'rssurl2'
+        self.client.put(url, **data)
+
         url = reverse('list_podcasts')
-        data= dict(name='test', rss='rssurl')
-        res = self.client.get(url, **self.extra)
-        self.assertTrue(self.client.get(url))
+        data = dict(name='test', rss='rssurl')
+        res = self.client.get(url)
+        print "------------"
+        print res
+        self.assertTrue(res)
 
