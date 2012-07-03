@@ -6,7 +6,6 @@ from rssdownloader.api import Mp3FileHandler
 
 admin.autodiscover()
 
-mp3file_handler = Mp3FileHandler()
 
 urlpatterns = patterns('',
     # Examples:
